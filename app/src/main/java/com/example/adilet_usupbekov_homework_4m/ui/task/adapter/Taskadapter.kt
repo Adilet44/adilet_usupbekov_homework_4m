@@ -1,4 +1,4 @@
-package com.example.adilet_usupbekov_homework_4m.ui.home.adapter
+package com.example.adilet_usupbekov_homework_4m.ui.task.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -9,15 +9,19 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.adilet_usupbekov_homework_4m.databinding.ItemTeskBinding
 import com.example.adilet_usupbekov_homework_4m.model.Task
 
-class Taskadapter : Adapter<Taskadapter.TaskViewHolder>() {
+class Taskadapter(private val onLongClick: (Task) -> Unit): Adapter<Taskadapter.TaskViewHolder>() {
     private val data: ArrayList<Task> = arrayListOf()
 
 
     fun addTask(task: Task) {
         data.add(0, task)
-        notifyItemChanged(0)
+        notifyItemChanged(10)
     }
-
+    fun addTask(task:List<Task>) {
+     data.clear()
+        data.addAll(task)
+        notifyDataSetChanged()
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder {
         return TaskViewHolder(
@@ -40,6 +44,10 @@ class Taskadapter : Adapter<Taskadapter.TaskViewHolder>() {
         fun bind(task: Task) {
             binding.tvTitle.text = task.title
             binding.tvDescription.text = task.description
+             itemView.setOnLongClickListener(){
+                 onLongClick(task)
+                 false
+             }
         }
 
     }

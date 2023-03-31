@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.setFragmentResult
 import androidx.navigation.fragment.findNavController
+import com.example.adilet_usupbekov_homework_4m.App
 import com.example.adilet_usupbekov_homework_4m.R
 import com.example.adilet_usupbekov_homework_4m.databinding.FragmentTaskBinding
 import com.example.adilet_usupbekov_homework_4m.model.Task
@@ -26,16 +27,21 @@ class TaskFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.btnSave.setOnClickListener {
-            val data = Task(title = binding.etTitle.text.toString(),
-                description = binding.etDescription.text.toString())
-            setFragmentResult(TASK_REQUEST, bundleOf(TASK_KEY to data))
-            findNavController().navigateUp()
+            if (binding.etTitle.text.isNotEmpty()){
+                save()
+            }else binding.etTitle.error = "Это поле обязательна для заполнения "
+
         }
     }
-companion object{
-    const val TASK_REQUEST = "task"
-    const val TASK_KEY = "task_key"
-}
+
+    private fun save() {
+        val data = Task(title = binding.etTitle.text.toString(),
+            description = binding.etDescription.text.toString())
+        App.db.taskDao().insert(data)
+        findNavController().navigateUp()
+    }
 
 
 }
+
+

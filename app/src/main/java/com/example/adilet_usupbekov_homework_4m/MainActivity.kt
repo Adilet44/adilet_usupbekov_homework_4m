@@ -12,22 +12,25 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.adilet_usupbekov_homework_4m.R.id.taskFragment
+import com.example.adilet_usupbekov_homework_4m.data.local.Pref
 import com.example.adilet_usupbekov_homework_4m.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    private lateinit var pref: Pref
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        pref = Pref(this)
 
         val navView: BottomNavigationView = binding.navView
 
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
-
+              if (!pref.isUserSeen())
         navController.navigate(R.id.onBoardFragment)
 
         // Passing each menu ID as a set of Ids because each
