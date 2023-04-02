@@ -30,8 +30,8 @@ class MainActivity : AppCompatActivity() {
         val navView: BottomNavigationView = binding.navView
 
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
-              if (!pref.isUserSeen())
-        navController.navigate(R.id.onBoardFragment)
+        if (!pref.isUserSeen())
+            navController.navigate(R.id.onBoardFragment)
 
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
@@ -54,9 +54,9 @@ class MainActivity : AppCompatActivity() {
         navView.setupWithNavController(navController)
         navController.addOnDestinationChangedListener { controller, destination, arguments ->
             navView.isVisible = bottomNavFragment.contains(destination.id)
-            if (destination.id==R.id.onBoardFragment){
+            if (destination.id == R.id.onBoardFragment) {
                 supportActionBar?.hide()
-            }else supportActionBar?.show()
+            } else supportActionBar?.show()
 
         }
     }

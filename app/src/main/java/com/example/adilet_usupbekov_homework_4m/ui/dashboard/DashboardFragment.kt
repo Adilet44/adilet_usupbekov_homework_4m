@@ -13,7 +13,7 @@ import com.example.adilet_usupbekov_homework_4m.databinding.FragmentDashboardBin
 class DashboardFragment : Fragment() {
 
     private var _binding: FragmentDashboardBinding? = null
-    private lateinit var pref:Pref
+    private lateinit var pref: Pref
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -31,12 +31,13 @@ class DashboardFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        pref=Pref(requireContext())
+        pref = Pref(requireContext())
         binding.etAny.setText(pref.getAnyText())
-        binding.btnSave.setOnClickListener{
-        pref.saveAnyText(binding.etAny.text.toString())
+        binding.btnSave.setOnClickListener {
+            pref.saveAnyText(binding.etAny.text.toString())
         }
     }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

@@ -14,34 +14,31 @@ import com.example.adilet_usupbekov_homework_4m.databinding.FragmentTaskBinding
 import com.example.adilet_usupbekov_homework_4m.model.Task
 
 class TaskFragment : Fragment() {
-  private lateinit var binding: FragmentTaskBinding
+    private lateinit var binding: FragmentTaskBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-       binding=FragmentTaskBinding.inflate(inflater,container,false)
+        binding = FragmentTaskBinding.inflate(inflater, container, false)
         return binding.root
     }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.btnSave.setOnClickListener {
-            if (binding.etTitle.text.isNotEmpty()){
+            if (binding.etTitle.text.isNotEmpty()) {
                 save()
-            }else binding.etTitle.error = "Это поле обязательна для заполнения "
-
+            } else binding.etTitle.error = "This field is required"
         }
     }
-
     private fun save() {
-        val data = Task(title = binding.etTitle.text.toString(),
-            description = binding.etDescription.text.toString())
+        val data = Task(
+            title = binding.etTitle.text.toString(),
+            description = binding.etDescription.text.toString()
+        )
         App.db.taskDao().insert(data)
         findNavController().navigateUp()
     }
-
-
 }
 
 

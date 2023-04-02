@@ -21,12 +21,13 @@ class HomeFragment : Fragment() {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
-    private lateinit var adapter : Taskadapter
+    private lateinit var adapter: Taskadapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        adapter= Taskadapter(this::onLongClick)
+        adapter = Taskadapter(this::onLongClick)
     }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -44,17 +45,21 @@ class HomeFragment : Fragment() {
         setData()
         binding.recycleView.adapter = adapter
     }
-    private fun setData(){
+
+    private fun setData() {
         val data = App.db.taskDao().getAll()
         adapter.addTask(data)
     }
-    private fun onLongClick(task: Task){
+
+    private fun onLongClick(task: Task) {
         val alertDialog = AlertDialog.Builder(requireContext())
         alertDialog.setTitle("Deleting the task")
         alertDialog.setMessage("Are you sure you want to delete this task")
-        alertDialog.setNegativeButton("No"
+        alertDialog.setNegativeButton(
+            "No"
         ) { dialog, which -> dialog?.cancel() }
-        alertDialog.setPositiveButton("Yes"
+        alertDialog.setPositiveButton(
+            "Yes"
         ) { dialog, which ->
             App.db.taskDao().delete(task)
             setData()

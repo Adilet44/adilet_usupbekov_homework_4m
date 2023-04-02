@@ -12,8 +12,8 @@ import com.example.adilet_usupbekov_homework_4m.ui.onBoard.adapter.onBoardAdapte
 import me.relex.circleindicator.CircleIndicator3
 
 class onBoardFragment() : Fragment() {
-private lateinit var binding: FragmentOnBoardBinding
-private val adapter = onBoardAdapter( this::onStartClick)
+    private lateinit var binding: FragmentOnBoardBinding
+    private val adapter = onBoardAdapter(this::onStartClick)
     private lateinit var pref: Pref
 
 
@@ -21,26 +21,26 @@ private val adapter = onBoardAdapter( this::onStartClick)
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-       binding=FragmentOnBoardBinding.inflate(inflater,container,false)
+        binding = FragmentOnBoardBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        pref=Pref(requireContext())
-        binding.viewPager.adapter=adapter
+        pref = Pref(requireContext())
+        binding.viewPager.adapter = adapter
         setIndicator()
     }
 
     private fun setIndicator() {
-        val indicator: CircleIndicator3=binding.indicator
+        val indicator: CircleIndicator3 = binding.indicator
         val viewPager = binding.viewPager
         indicator.setViewPager(viewPager)
     }
 
-    private fun onStartClick(){
+    private fun onStartClick() {
         pref.saveSeen()
-findNavController().navigateUp()
+        findNavController().navigateUp()
     }
 
 }
