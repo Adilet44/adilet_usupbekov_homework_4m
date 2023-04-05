@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/img_1"
     tools:context=".ui.dashboard.DashboardFragment">
 <EditText
     android:id="@+id/et_any"
@@ -11,12 +12,13 @@
     android:layout_height="wrap_content"
     android:layout_marginTop="16dp"
     android:layout_marginHorizontal="16dp"
-    android:hint="Any text"
+    android:hint="@string/any_text"
+    android:textColor="@color/white"
     app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btn_save"
-        android:text="Save"
+        android:text="@string/savee"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"

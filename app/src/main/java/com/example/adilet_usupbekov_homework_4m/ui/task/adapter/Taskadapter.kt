@@ -41,6 +41,7 @@ class Taskadapter(private val onLongClick: (Task) -> Unit) : Adapter<Taskadapter
 
     override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
         holder.bind(data[position])
+
     }
 
 
